@@ -44,4 +44,13 @@ Follow these steps to deploy:
 ./ml local deploy_ontologies
 ```
 
-Ontologies are loaded into their own "ontology" graph for ease of discovery
+Ontologies are loaded into their own "ontology" graph for ease of discovery and deletion
+
+## Re-deployment
+
+To deploy an updated ontology, follow these steps:
+```
+./ml local deploy content
+./ml local deploy_ontologies
+```
+Use the ontology graph with care: existing entries are deleted prior to redeployment.
