@@ -1,5 +1,7 @@
 # Deploying ontologies using Roxy
 
+Ontologies and taxonomies sit in an awkward space within the Roxy framework - this inflated gist is my work-around for loading triple-based reference data.
+
 There are 4 parts to an ontology or taxonomy deployment using Roxy
 
 * Database configured for triples
@@ -9,7 +11,7 @@ There are 4 parts to an ontology or taxonomy deployment using Roxy
 
 ## Database configured for triples
 
-sth here - how to
+TODO: howto - modify database xml config
 
 ## install_ontologies module
 
@@ -25,14 +27,12 @@ http://www.w3.org/TR/turtle/ for more details
 
 See http://stackoverflow.com/questions/10337712/recommended-approach-to-monkey-patching-a-class-in-ruby for the dangers involved (not many).
 
-Add the following line to your deploy/app_specific.rb file:
+Add the following line to the bottom of your deploy/app_specific.rb file:
 
 ```
 require 'ontology_specific'
 
 ```
-
-(I add it at the bottom to ensure the class already exists, but I believe that there are no issues with adding it at the top)
 
 ## Deployment
 
@@ -43,3 +43,5 @@ Follow these steps to deploy:
 ./ml local deploy content
 ./ml local deploy_ontologies
 ```
+
+Ontologies are loaded into their own "ontology" graph for ease of discovery

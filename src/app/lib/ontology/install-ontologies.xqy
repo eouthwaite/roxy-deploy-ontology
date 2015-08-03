@@ -5,5 +5,5 @@ import module namespace sem = "http://marklogic.com/semantics" at "/MarkLogic/se
 for $ontology in cts:uri-match("/ontology/*")
 return (
   xdmp:log(fn:concat("Installing ontology ", $ontology, "..")),
-  sem:rdf-insert( sem:rdf-parse( doc($ontology), "turtle" ))
+  sem:rdf-insert( sem:rdf-parse( doc($ontology), "turtle" ), (), (), ('ontology'))
 )
