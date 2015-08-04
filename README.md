@@ -1,6 +1,10 @@
 # Deploying ontologies using Roxy
 
-Ontologies and taxonomies sit in an awkward space within the Roxy framework - this inflated gist is my work-around for loading triple-based reference data.
+On production systems, Ontologies and taxonomies should probably be loaded using MLCP - either from within the Roxy framework, or via separate scripts.
+
+In pre-production, any pre-existing triples will be left in place, which leads to problems if ontologies are being swapped in or out.
+
+This inflated gist is my work-around for loading triple-based reference data that is subject to change.
 
 There are 4 parts to an ontology or taxonomy deployment using Roxy
 
@@ -11,11 +15,14 @@ There are 4 parts to an ontology or taxonomy deployment using Roxy
 
 ## Database configured for triples
 
-TODO: howto - modify database xml config
+Enable the triple index by modifying the database xml config - add the following to ml-config.xml somewhere under <database> where the database-name is @ml.content-db :
+```
+<triple-index>true</triple-index>
+```
 
 ## install_ontologies module
 
-sth here
+This script simply deletes all triples in the ontology graph, then inserts all ontologies discovered in the /data/ontology directory into the ontology graph
 * TODO: alter the module to check the filename qualifier
 
 ## Turtle format ontologies
@@ -53,4 +60,4 @@ To deploy an updated ontology, follow these steps:
 ./ml local deploy content
 ./ml local deploy_ontologies
 ```
-Use the ontology graph with care: existing entries are deleted prior to redeployment.
+Use the ontology graph with care; existing entries are deleted prior to redeployment.
